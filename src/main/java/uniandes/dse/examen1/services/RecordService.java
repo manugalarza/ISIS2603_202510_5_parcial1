@@ -42,13 +42,10 @@ public class RecordService {
         	throw new InvalidRecordException("La nota no es correcta");
         }
         
-        studentEntity.getRecords();
+        List<RecordEntity> records = studentEntity.getRecords();
+        records.indexOf(records)
         List<CourseEntity> courses = student.getCourses();
         
-        
-        
-		medicoEntity.get().getEspecialidades().add(especialidadEntity.get());
-		log.info("Termina proceso de asociarle una especialidad al medico con id = {0}", medicoId);
-		return medicoEntity.get();
+        return recordRepository.save(newStudent);
     }
 }
