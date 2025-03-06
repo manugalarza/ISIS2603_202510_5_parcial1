@@ -36,12 +36,34 @@ public class CourseServiceTest {
     }
 
     @Test
-    void testCreateRecordMissingCourse() {
-        // TODO
+    void testCreateCourse() {
+    	CourseEntity newEntity = factory.manufacturePojo(CourseEntity.class);
+        String code = newEntity.getCourseCode();
+
+        try {
+            CourseEntity storedEntity = courseService.createCourse(newEntity);
+            CourseEntity retrieved = entityManager.find(CourseEntity.class, storedEntity.getId());
+            assertEquals(code, retrieved.getCourseCode(), "The course code is not correct");
+        } catch (RepeatedCourseException e) {
+            fail("No exception should be thrown: " + e.getMessage());
+        }
     }
 
     @Test
     void testCreateRepeatedCourse() {
-        // TODO
+    	CourseEntity firstEntity = factory.manufacturePojo(CourseEntity.class);
+        String code = firstEntity.getCourseCode();
+
+        CourseEntity repeatedEntity = new CourseEntity();
+        repeatedEntity.setCourseCode(code);
+        repeatedEntity.setName("repeated name");
+        repeatedEntity.setCredits(10);
+
+        try {
+            courseService.createCourse(firstEntity);
+            courseService.createCourse(repeatedEntity);
+            fail("An exception must be thrown");
+        } catch (Exception e) {
+        }
     }
 }

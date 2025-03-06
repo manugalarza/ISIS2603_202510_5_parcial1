@@ -1,7 +1,5 @@
 package uniandes.dse.examen1.services;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +16,13 @@ public class StudentService {
     StudentRepository studentRepository;
 
     public StudentEntity createStudent(StudentEntity newStudent) throws RepeatedStudentException {
-        // TODO
+        log.info("Inicia proceso de creación del estudiante");
+
+        if (!studentRepository.findByLogin(newStudent.getLogin()).isEmpty()) {
+			throw new RepeatedStudentException(newStudent.getLogin());
+        }
+    
+        log.info("Termina proceso de creación de estudiante");
+        return studentRepository.save(newStudent);
+        }
     }
-}

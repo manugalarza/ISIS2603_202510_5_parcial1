@@ -22,7 +22,7 @@ public class StatsService {
     RecordRepository inscripcionRepository;
 
     public Double calculateStudentAverage(String login) {
-        // TODO
+    	estudianteRepository.ge
     }
 
     public Double calculateCourseAverage(String courseCode) {

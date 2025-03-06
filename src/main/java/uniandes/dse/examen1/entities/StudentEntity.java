@@ -3,6 +3,7 @@ package uniandes.dse.examen1.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,11 +37,14 @@ public class StudentEntity {
      * Each record indicates the semester, the course, and the final grade of the
      * student in the course.
      */
-    // TODO
+    @OneToMany(mappedBy = "student", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<RecordEntity> records = new ArrayList<>();
 
     /**
      * A list of all the courses that the student has ever taken. No course should
      * appear more than once in this list.
      */
-    // TODO
+    @PodamExclude
+    @ManyToMany(mappedBy = "student")
+    private List<CourseEntity> courses = new ArrayList<>();
 }
