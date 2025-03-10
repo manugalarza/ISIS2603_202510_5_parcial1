@@ -31,7 +31,7 @@ public class RecordEntity {
     @ManyToOne
     private StudentEntity student;
     
-    @OneToOne
+    @ManyToOne
     private CourseEntity course;
 
 }

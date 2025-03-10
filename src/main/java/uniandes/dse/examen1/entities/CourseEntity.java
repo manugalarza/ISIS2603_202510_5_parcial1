@@ -40,5 +40,5 @@ public class CourseEntity {
      * No student should appear more than once in this list
      */
     @ManyToMany
-    private List<StudentEntity> student = new ArrayList<>();
+    private List<StudentEntity> students = new ArrayList<>();
 }

@@ -44,7 +44,6 @@ public class StudentEntity {
      * A list of all the courses that the student has ever taken. No course should
      * appear more than once in this list.
      */
-    @PodamExclude
-    @ManyToMany(mappedBy = "student")
+    @ManyToMany(mappedBy = "students")
     private List<CourseEntity> courses = new ArrayList<>();
 }

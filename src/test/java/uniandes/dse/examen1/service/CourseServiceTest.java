@@ -45,7 +45,7 @@ public class CourseServiceTest {
             CourseEntity retrieved = entityManager.find(CourseEntity.class, storedEntity.getId());
             assertEquals(code, retrieved.getCourseCode(), "The course code is not correct");
         } catch (RepeatedCourseException e) {
-            fail("No exception should be thrown: " + e.getMessage());
+            fail("No debe fallar: " + e.getMessage());
         }
     }
 
@@ -62,7 +62,7 @@ public class CourseServiceTest {
         try {
             courseService.createCourse(firstEntity);
             courseService.createCourse(repeatedEntity);
-            fail("An exception must be thrown");
+            fail("Debio haber fallado");
         } catch (Exception e) {
         }
     }
